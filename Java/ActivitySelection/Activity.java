@@ -7,6 +7,14 @@ class Activity {
         this.finish = finish;
     }
 
+    public getStart() {
+        return start;
+    }
+
+    public getFinish() {
+        return finish;
+    }
+
     @Override
     public String toString() {
         return "Start time: " + start + " Finish time: " + finish;
