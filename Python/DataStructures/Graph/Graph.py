@@ -3,6 +3,20 @@ class Graph(object):
     def __init__(self):
         self.adj = {}
 
+    def vertices(self):
+        "Returns a list of vertices"
+        return self.adj.keys()
+
+    def edges(self):
+        "Returns edges as a list of pairs [(u,v)]"
+        edges = []
+        for u,v_list in self.adj.iteritems():
+            if v_list:
+                for v in v_list:
+                    e = (u,v)
+                    edges.append(e)
+        return edges
+
     def insert_vertex(self, v):
         "Inserts vertex `x` into the graph"
         if v not in self.adj:
