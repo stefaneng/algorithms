@@ -54,3 +54,6 @@ class DisjointSet(object):
         if new_set:
             self.collection.append(new_set)
         return new_set
+
+    def __str__(self):
+        return self.collection.__str__()
