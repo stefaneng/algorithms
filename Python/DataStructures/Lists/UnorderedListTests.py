@@ -18,5 +18,10 @@ class TestUnorderedListFunctions(unittest.TestCase):
         # Compare builtin list length to UnorderedList Length
         self.assertTrue(len(self.lst) == len(self.test_list))
 
+    def test_elements(self):
+        # Elements should be identical when compared
+        for i,x in enumerate(self.test_list):
+            self.assertTrue(x == self.lst[i])
+
 if __name__ == '__main__':
     unittest.main()

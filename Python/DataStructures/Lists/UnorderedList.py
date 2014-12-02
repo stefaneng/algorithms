@@ -125,3 +125,14 @@ class List(object):
 
     def __len__(self):
         return self.size()
+
+    def __getitem__(self, key):
+        index = 0
+        curr = self.head
+        while index < key:
+            if curr is None:
+                raise IndexError('list index out of range')
+            else:
+                index += 1
+                curr = curr.get_next()
+        return curr.get_data()
