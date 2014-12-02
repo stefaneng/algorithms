@@ -122,3 +122,6 @@ class List(object):
         while curr:
             yield curr.get_data()
             curr = curr.get_next()
+
+    def __len__(self):
+        return self.size()
