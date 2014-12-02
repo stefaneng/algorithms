@@ -12,6 +12,10 @@ class TestUnorderedListFunctions(unittest.TestCase):
             self.lst.append(i)
 
     def test_size(self):
+        # Empty list should have length zero
+        self.assertTrue(len(List()) == 0)
+
+        # Compare builtin list length to UnorderedList Length
         self.assertTrue(len(self.lst) == len(self.test_list))
 
 if __name__ == '__main__':
