@@ -30,18 +30,16 @@ class List(object):
         self.head = new_item
 
     def remove(self, item):
-        start = self.head
-        curr = start
+        curr = self.head
         previous = None
         while curr:
             if curr.get_data() == item:
                 if previous:
                     previous.set_next(curr.get_next())
                 else:
-                    start = start.get_next()
+                    self.head = self.head.get_next()
             previous = curr
             curr = curr.get_next()
-        self.head = start
 
     def search(self, item):
         curr = self.head
@@ -64,12 +62,10 @@ class List(object):
     def append(self, item):
         new_node = Node(item)
         if self.head:
-            start = self.head
-            curr = start
+            curr = self.head
             while curr.get_next():
                 curr = curr.get_next()
             curr.set_next(new_node)
-            self.head = start
         else:
             self.head = new_node
 
@@ -85,8 +81,7 @@ class List(object):
         return -1
 
     def insert(self, pos, item):
-        start = self.head
-        curr = start
+        curr = self.head
         previous = None
         while pos > 0:
             previous = curr
@@ -95,17 +90,14 @@ class List(object):
         new_node = Node(item)
         previous.set_next(new_node)
         new_node.set_next(curr)
-        self.head = start
 
     def pop(self):
-        start = self.head
-        curr = start
+        curr = self.head
         previous = None
         while curr.get_next():
             previous = curr
             curr = curr.get_next()
         previous.set_next(None)
-        self.head = start
         return curr.get_data()
 
     #def pop(self, pos):
