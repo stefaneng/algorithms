@@ -91,17 +91,20 @@ class List(object):
         previous.set_next(new_node)
         new_node.set_next(curr)
 
-    def pop(self):
+    def pop(self, pos=None):
         curr = self.head
         previous = None
-        while curr.get_next():
-            previous = curr
-            curr = curr.get_next()
-        previous.set_next(None)
+        if pos:
+            while pos > 0:
+                previous = curr
+                curr = curr.get_next()
+                pos -= 1
+        else:
+            while curr.get_next():
+                previous = curr
+                curr = curr.get_next()
+        previous.set_next(curr.get_next())
         return curr.get_data()
-
-    #def pop(self, pos):
-    #    pass
 
     def __str__(self):
         curr = self.head
@@ -139,5 +142,5 @@ if __name__ == '__main__':
     l.insert(1, 7)
     print l
 
-    print l.pop()
+    print l.pop(1)
     print l
