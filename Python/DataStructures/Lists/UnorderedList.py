@@ -122,25 +122,3 @@ class List(object):
         while curr:
             yield curr.get_data()
             curr = curr.get_next()
-
-if __name__ == '__main__':
-    l = List()
-    l.add(1)
-    l.add(2)
-    l.add(3)
-    print l
-
-    for i in l:
-        print i
-
-    print "Length: ", l.size()
-
-    l.remove(2)
-    print l
-    print "3 is at index: ", l.index(3)
-
-    l.insert(1, 7)
-    print l
-
-    print l.pop(1)
-    print l
