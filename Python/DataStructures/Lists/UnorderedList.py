@@ -30,16 +30,36 @@ class List(object):
         self.head = new_item
 
     def remove(self, item):
-        pass
+        start = self.head
+        curr = start
+        previous = None
+        while curr:
+            if curr.get_data() == item:
+                if previous:
+                    previous.set_next(curr.get_next())
+                else:
+                    start = start.get_next()
+            previous = curr
+            curr = curr.get_next()
+        self.head = start
 
     def search(self, item):
-        pass
+        curr = self.head
+        while curr:
+            if curr.get_data() == item:
+                return True
+        return False
 
     def is_empty(self):
         return self.head is None
 
     def size(self):
-        pass
+        length = 0
+        curr = self.head
+        while curr:
+            length += 1
+            curr = curr.get_next()
+        return length
 
     def append(self, item):
         new_node = Node(item)
@@ -53,18 +73,43 @@ class List(object):
         else:
             self.head = new_node
 
-
     def index(self, item):
-        pass
+        count = 0
+        curr = self.head
+        while curr:
+            if curr.get_data() == item:
+                return count
+            else:
+                count += 1
+                curr = curr.get_next()
+        return -1
 
-    def insert(self, pos,item):
-        pass
+    def insert(self, pos, item):
+        start = self.head
+        curr = start
+        previous = None
+        while pos > 0:
+            previous = curr
+            curr = curr.get_next()
+            pos -= 1
+        new_node = Node(item)
+        previous.set_next(new_node)
+        new_node.set_next(curr)
+        self.head = start
 
     def pop(self):
-        pass
+        start = self.head
+        curr = start
+        previous = None
+        while curr.get_next():
+            previous = curr
+            curr = curr.get_next()
+        previous.set_next(None)
+        self.head = start
+        return curr.get_data()
 
-    def pop(self, pos):
-        pass
+    #def pop(self, pos):
+    #    pass
 
     def __str__(self):
         curr = self.head
@@ -92,3 +137,15 @@ if __name__ == '__main__':
 
     for i in l:
         print i
+
+    print "Length: ", l.size()
+
+    l.remove(2)
+    print l
+    print "3 is at index: ", l.index(3)
+
+    l.insert(1, 7)
+    print l
+
+    print l.pop()
+    print l
