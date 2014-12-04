@@ -39,4 +39,4 @@ class Graph(object):
             for u,v in self.edges():
                 if ds.find_set(u) != ds.find_set(v):
                     ds.union(u,v)
-        return ds
+        return ds.collection
