@@ -1,3 +1,5 @@
+from ..DisjointSet import DisjointSet
+
 class Graph(object):
     "(Undirected) Graph data structure (using Adjacency Lists implemented with a dict)"
     def __init__(self):
@@ -28,3 +30,13 @@ class Graph(object):
         self.insert_vertex(v)
         self.adj[u].append(v)
         self.adj[v].append(u)
+
+    def connected_components(self):
+        "Returns a list of sets of connected components"
+        ds = DisjointSet()
+        for v in self.vertices():
+            ds.make_set(v)
+            for u,v in self.edges():
+                if ds.find_set(u) != ds.find_set(v):
+                    ds.union(u,v)
+        return ds
