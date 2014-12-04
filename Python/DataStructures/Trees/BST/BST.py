@@ -42,8 +42,36 @@ class BST(object):
                 curr = curr.right
         return False
 
+    def min(self):
+        curr = self.root
+        while curr.left:
+            curr = curr.left
+        return curr.data
+
+    def max(self):
+        curr = self.root
+        while curr.right:
+            curr = curr.right
+        return curr.data
+
+    def inorder(self):
+        curr = self.root
+        stack = []
+        while stack or curr:
+            if curr:
+                stack.append(curr)
+                curr = curr.left
+            else:
+                if stack:
+                    curr = stack.pop()
+                    yield curr.data
+                    curr = curr.right
+
 if __name__ == '__main__':
+    import random
     bst = BST()
-    bst.insert(3)
-    bst.insert(2)
-    print bst.search(2)
+    test_list = range(10)
+    random.shuffle(test_list)
+    for i in test_list:
+        bst.insert(i)
+    print list(bst.inorder())
