@@ -9,14 +9,18 @@ class Graph(object):
         "Returns a list of vertices"
         return self.adj.keys()
 
-    def edges(self):
-        "Returns edges as a list of pairs [(u,v)]"
+    def edges(self, weights=None):
+        "Returns edges as a list of pairs [(u,v,w)] where w is the weight"
         edges = []
         for u,v_list in self.adj.iteritems():
             if v_list:
-                for v in v_list:
-                    e = (u,v)
-                    edges.append(e)
+                for v,w in v_list:
+                    if weights:
+                        e = (u,v,w)
+                        edges.append(e)
+                    else:
+                        e = (u,v)
+                        edges.append(e)
         return edges
 
     def insert_vertex(self, v):
@@ -25,11 +29,18 @@ class Graph(object):
             self.adj[v] = []
         return self.adj[v]
 
-    def insert_edge(self, u, v):
+    def insert_undirected_edge(self, u, v, w = 1):
+        "Inserts an undirected edge (u,v) and (v,u) with weight `w`"
         self.insert_vertex(u)
         self.insert_vertex(v)
-        self.adj[u].append(v)
-        self.adj[v].append(u)
+        self.adj[u].append((v,w))
+        self.adj[v].append((u,w))
+
+    def insert_edge(self, u, v, w = 1):
+        "Inserts a directed edge (u,v) with weight `w`"
+        self.insert_vertex(u)
+        self.insert_vertex(v)
+        self.adj[u].append((v,w))
 
     def connected_components(self):
         "Returns a list of sets of connected components"
