@@ -1,4 +1,7 @@
-from sets import Set
+try:
+    from sets import Set
+except ImportError:
+    Set = set
 
 class DisjointSet(object):
     """

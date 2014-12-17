@@ -1,4 +1,4 @@
-from ..DisjointSet import DisjointSet
+from DisjointSet import DisjointSet
 
 class Graph(object):
     "(Undirected) Graph data structure (using Adjacency Lists implemented with a dict)"
